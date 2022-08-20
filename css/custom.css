@@ -1,6 +1,7 @@
 /*
  *  Adapted from Draco HTML Template by @flamekaizar
  */
+
 h1,
 h2,
 h3,
@@ -107,24 +108,57 @@ nav img {
 }
 .main-nav {
   padding-top: 23px;
+  background: rgb(108, 172, 228);
 }
 .main-nav nav ul li a {
-  color: #a7a7a7;
+  color: white;
   margin-top: 10px;
+  margin-right: 5px;
+  margin-left: 5px;
+  font-size: 1.2em;
 }
 .main-nav nav ul li.active a {
   color: #4d4d4d;
 }
 
-.section.second {
-  margin-bottom: 90px;
+#cv-button-container {
+  position: relative;
 }
+
+#cv-button {
+  background-color: #008cba;
+  border: none;
+  color: white;
+  padding: 15px 150px;
+  margin-bottom: 100px;
+  margin-top: 50px;
+  text-align: center;
+  text-decoration: none;
+  /* display: inline-block; */
+  font-size: 16px;
+  border-radius: 10px;
+}
+
+#cv-button:hover {
+  background-color: #00a9e1;
+  transition: background-color 0.5s;
+}
+
+.center {
+  margin: 0;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -ms-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+}
+
 .section .container {
   position: relative;
 }
 .section .container:after {
   position: absolute;
-  content: url(../img/separator.png);
+  /* content: url(../img/separator.png); separator - enable/disable here */
   left: 20px;
 }
 .section .container h1 {
@@ -199,16 +233,4 @@ nav img {
   padding: 40px 20px;
   border: 5px solid #fff;
   color: #fff;
-}
-
-footer {
-  padding: 50px 0px 0px 0px;
-}
-footer .social li {
-  display: inline;
-  margin-left: 20px;
-}
-footer .social li a {
-  font-size: 1.25em;
-  color: #999999;
 }
