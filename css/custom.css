@@ -201,30 +201,34 @@ iframe {
   font-size: 47px;
 }
 
-.work .work-list {
+.contacts .contacts-list {
   margin-left: 0px;
   z-index: 9999;
 }
-.work .work-list li {
+.contacts .contacts-list li {
   list-style: none;
   font-size: 0.9375em;
   color: #8c8c8c;
 }
-.work .work-list li a {
+.contacts .contacts-list li a {
   padding-bottom: 5px;
   font-size: 1.1875em;
   font-weight: 700;
   text-decoration: none;
   border-bottom: 1px solid #b3b3b3;
 }
-.work .work-list li a:hover {
+.contacts .contacts-list li a:hover {
   border-bottom: 1px solid #333333;
 }
 
-.award .award-list {
+#teaching-section {
+  margin-top: 30px;
+}
+
+.teaching .teaching-list {
   margin-left: 0px;
 }
-.award .award-list li:first-child {
+.teaching .teaching-list li:first-child {
   font-size: 0.9375em;
   color: #8c8c8c;
 }
