@@ -245,6 +245,14 @@ iframe {
   color: #8c8c8c;
 }
 
+#research-section {
+  margin-top: 30px;
+}
+
+.research .research-list {
+  margin-left: 0px;
+}
+
 .skills .skill-list {
   margin-left: 0px;
 }
