@@ -31,7 +31,7 @@
       }
     </style>
   </head>
-  <body>
+  <body id="cv-page">
     <!-- Navigation -->
     <div class="main-nav">
       <div class="container">
@@ -46,9 +46,9 @@
           <nav id="navbar-1" class="navbar item-nav">
             <ul>
               <li><img src="img/columbia.png" /></li>
-              <li class="active"><a href="index.html">Home</a></li>
+              <li><a href="index.html">Home</a></li>
               <li><a>Research</a></li>
-              <li><a href="cv.html">CV</a></li>
+              <li class="active"><a>CV</a></li>
               <li><a>Teaching & Mentoring</a></li>
             </ul>
           </nav>
@@ -57,45 +57,14 @@
     </div>
 
     <!-- Introduction -->
-    <div class="intro section">
-      <div class="container">
-        <div class="units-row units-split wrap">
-          <div class="unit-20">
-            <img src="img/ava.jpg" alt="Avatar" />
-          </div>
-          <div class="unit-80">
-            <h1>Bhargav Gopal<br /></h1>
-          </div>
-          <p>
-            I am a doctoral candidate at Columbia University doing research at
-            the intersection of labor, gender, and law and economics. You can
-            view my CV here. Prior to Columbia, I received a B.A. in Economics
-            from UC Berkeley and was a Research Fellow at Stanford Law School. I
-            will be on the job market and available for interviews in Fall 2022.
-          </p>
-        </div>
-      </div>
+    <!-- <div class="section"> -->
+    <div id="cv-container">
+      <iframe src="cv.pdf" title="CV"></iframe>
     </div>
+    <!-- </div> -->
 
     <!-- Work Experience -->
-    <div class="work section">
-      <div class="container" id="contact-cv-container">
-        <div class="center">
-          <ul class="work-list">
-            <li>
-              Email:
-              <a href="mailto: b.gopal@columbia.edu">b.gopal@columbia.edu</a>
-            </li>
-            <li>Phone: 818-451-3475</li>
-          </ul>
-        </div>
-        <div class="center" id="cv-div">
-          <button onclick="window.open('cv.pdf', '_blank');" id="cv-button">
-            CV
-          </button>
-        </div>
-      </div>
-    </div>
+
     <!-- Award & Achievements -->
     <!-- <div class="award section second" id="achievements">
       <div class="container">
@@ -139,7 +108,7 @@
     </div> -->
 
     <!-- Javascript -->
-    <!-- <script src="js/jquery.min.js"></script>
+    <script src="js/jquery.min.js"></script>
     <script src="js/typed.min.js"></script>
     <script src="js/kube.js"></script>
     <script src="js/site.js"></script>
@@ -162,6 +131,6 @@
             $("#typed").typed("reset");
           });
       });
-    </script> -->
+    </script>
   </body>
 </html>

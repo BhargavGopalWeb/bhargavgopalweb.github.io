@@ -156,8 +156,14 @@ nav img {
 #cv-div {
   z-index: -1;
 }
-#test {
-  z-index: 100;
+
+iframe {
+  height: 100vh;
+  width: 100%;
+}
+
+#cv-page {
+  overflow-y: hidden;
 }
 
 .section .container {
