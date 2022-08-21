@@ -103,6 +103,18 @@ a:hover {
   }
 }
 
+.credit {
+  position: absolute;
+  right: 10px;
+  z-index: 1000;
+  font-size: 0.7em;
+}
+.credit p {
+  color: white;
+}
+.credit a {
+  color: white;
+}
 nav img {
   width: 300px;
 }
