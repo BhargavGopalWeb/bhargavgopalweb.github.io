@@ -156,6 +156,18 @@ nav img {
   transition: background-color 0.5s;
 }
 
+.paper-button {
+  background-color: #008cba;
+  border: none;
+  color: white;
+  padding: 15px 150px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  border-radius: 10px;
+}
+
 .center {
   margin: auto;
   position: absolute;
@@ -251,6 +263,10 @@ iframe {
 
 .research .research-list {
   margin-left: 0px;
+}
+
+.research .research-list a {
+  font-size: 1.15em;
 }
 
 .skills .skill-list {
