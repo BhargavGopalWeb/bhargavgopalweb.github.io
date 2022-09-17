@@ -37,17 +37,6 @@ a:hover {
   padding: 0 20px;
 }
 
-@media only screen and (max-width: 1045px) {
-  .intro img {
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
-  }
-
-  footer {
-    text-align: center;
-  }
-}
 .typed-cursor {
   opacity: 1;
   font-weight: 100;
@@ -117,6 +106,7 @@ a:hover {
 }
 nav img {
   width: 300px;
+  margin-left: 15px;
 }
 .main-nav {
   padding-top: 23px;
@@ -142,13 +132,18 @@ nav img {
   border: none;
   color: white;
   padding: 15px 150px;
-  margin-top: 100px;
-  margin-bottom: 8px;
+  margin: 2%;
   text-align: center;
   text-decoration: none;
   display: inline-block;
   font-size: 16px;
   border-radius: 10px;
+}
+
+@media (max-width: 1045px) {
+  #cv-button {
+    padding: 15px 25%;
+  }
 }
 
 #cv-button:hover {
@@ -205,24 +200,64 @@ iframe {
 }
 
 .intro {
-  padding: 95px 0px 70px 0px;
+  padding-top: 3.5%;
+  padding-bottom: 0.5%;
   overflow-x: hidden;
 }
 .intro img {
-  width: 250px;
-  border-radius: 99px;
-  margin: -10px;
+  width: 260px;
+  border-radius: 15px;
 }
-.intro h1:before {
-  position: absolute;
-  left: -220px;
-  top: -150px;
-  font-size: 270px;
-  z-index: -1;
-  color: #f4f4f4;
+
+.intro-text {
+  display: flex;
+  align-items: center;
+  width: 90%;
 }
-.intro h1 span {
-  font-size: 47px;
+
+.intro-text p {
+  margin-left: 3%;
+  font-size: 1.3em;
+  line-height: 1.5em;
+  text-align: left;
+}
+
+@media (max-width: 1045px) {
+  .intro-text p {
+    margin: 5%;
+  }
+}
+
+@media (max-width: 1045px) {
+  .intro-text {
+    flex-direction: column;
+    width: 100%;
+  }
+
+  .intro-text p {
+    margin-top: 5%;
+  }
+}
+
+.name h1 {
+  text-align: center;
+  font-size: 3em;
+}
+
+.contacts {
+  text-align: center;
+}
+
+#email-label {
+  font-size: 1.3em;
+  font-weight: bold;
+}
+
+.contacts a {
+  padding-bottom: 2%;
+  font-size: 1.3em;
+  font-weight: 900;
+  text-decoration: none;
 }
 
 .contacts .contacts-list {
