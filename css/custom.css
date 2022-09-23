@@ -118,9 +118,8 @@ a:hover {
 }
 
 .main-nav nav ul li.active a {
-  font-weight: bold;
   text-decoration: underline;
-  text-decoration-thickness: 3px;
+  text-decoration-thickness: 2px;
   text-underline-offset: 5px;
   color: white;
 }
