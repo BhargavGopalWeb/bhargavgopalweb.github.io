@@ -268,7 +268,6 @@ iframe {
   }
 
   .intro-text {
-    /* margin: 5%; */
     flex-direction: column;
     width: 95%;
   }
