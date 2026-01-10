@@ -142,17 +142,17 @@
         .presentations-container:hover .presentations-text,
         .media-container:hover .media-text,
         .diagram-container:hover .diagram-text {
-          opacity: 0;
-          visibility: hidden;
+          opacity: 0 !important;
+          visibility: hidden !important;
         }
         /* On mobile, make content visible and in normal flow when linked to */
         .abstract-text,
         .presentations-text,
         .media-text,
         .diagram-text {
-          position: relative;
-          top: auto;
-          left: auto;
+          position: relative !important;
+          top: auto !important;
+          left: auto !important;
           opacity: 0;
           visibility: hidden;
           max-height: 0;
@@ -161,16 +161,24 @@
           margin-bottom: 0;
           transition: opacity 0.3s ease-in-out, visibility 0.3s ease-in-out, max-height 0.3s ease-in-out, padding 0.3s ease-in-out, margin 0.3s ease-in-out;
         }
-        .abstract-text:target,
-        .presentations-text:target,
-        .media-text:target,
-        .diagram-text:target {
-          opacity: 1;
-          visibility: visible;
-          max-height: 2000px;
-          padding: 10px;
-          margin-top: 10px;
-          margin-bottom: 10px;
+        #paper1-abstract:target,
+        #paper1-presentations:target,
+        #paper1-media:target,
+        #paper1-diagram:target,
+        #paper2-abstract:target,
+        #paper2-presentations:target,
+        #paper2-media:target,
+        #paper2-diagram:target {
+          opacity: 1 !important;
+          visibility: visible !important;
+          max-height: 2000px !important;
+          padding: 10px !important;
+          margin-top: 10px !important;
+          margin-bottom: 10px !important;
+          scroll-margin-top: 20px;
+        }
+        html {
+          scroll-behavior: smooth;
         }
       }
       /* Desktop - hide link styling, show as normal text */
