@@ -128,118 +128,16 @@
         max-width: 2500px;
         white-space: normal;
       }
-      /* Mobile/touch device styles - make labels links */
+      /* Mobile/touch device styles - hide buttons on mobile */
       @media (hover: none) and (pointer: coarse),
       (max-width: 768px) {
         .sections-container {
-          display: flex !important;
-          flex-direction: column !important;
-          flex-wrap: nowrap !important;
-          align-items: flex-start !important;
-          position: relative !important;
-        }
-        .abstract-container,
-        .presentations-container,
-        .media-container,
-        .diagram-container {
-          display: block !important;
-          flex-shrink: 0 !important;
-          position: relative !important;
-          pointer-events: auto !important;
-          margin: 2px 0 !important;
-        }
-        .section-separator {
           display: none !important;
-        }
-        .section-link-mobile {
-          color: #4e4e4e;
-          text-decoration: none;
-          cursor: pointer;
-          pointer-events: auto !important;
-          -webkit-tap-highlight-color: rgba(0, 0, 0, 0.1);
-          display: block;
-          touch-action: manipulation;
-          position: relative;
-          z-index: 1000;
-          min-height: 36px;
-          line-height: 36px;
-          padding: 0;
-          margin: 0;
-        }
-        .section-link-mobile:active {
-          color: #333;
-        }
-        /* Disable hover and desktop transitions on mobile */
-        .abstract-container:hover .abstract-text,
-        .presentations-container:hover .presentations-text,
-        .media-container:hover .media-text,
-        .diagram-container:hover .diagram-text {
-          opacity: 0 !important;
-          visibility: hidden !important;
-        }
-        /* Disable all transitions from desktop CSS on mobile */
-        .abstract-text,
-        .presentations-text,
-        .media-text,
-        .diagram-text {
-          transition: none !important;
-        }
-        /* On mobile, make content visible and in normal flow when linked to */
-        .abstract-text,
-        .presentations-text,
-        .media-text,
-        .diagram-text {
-          position: fixed !important;
-          top: auto !important;
-          left: 10px !important;
-          right: 10px !important;
-          opacity: 0 !important;
-          visibility: hidden !important;
-          max-height: 0 !important;
-          padding: 0 !important;
-          margin-top: 0 !important;
-          margin-bottom: 0 !important;
-          transition: none !important;
-          overflow: hidden !important;
-          width: calc(100vw - 20px) !important;
-          max-width: calc(100vw - 20px) !important;
-          min-width: auto !important;
-          box-sizing: border-box !important;
-          z-index: 9999 !important;
-          display: block !important;
-        }
-        .abstract-text.mobile-active,
-        .presentations-text.mobile-active,
-        .media-text.mobile-active,
-        .diagram-text.mobile-active {
-          position: fixed !important;
-          top: auto !important;
-          left: 10px !important;
-          right: 10px !important;
-          opacity: 1 !important;
-          visibility: visible !important;
-          max-height: calc(100vh - 100px) !important; /* Works on both iOS and Android */
-          padding: 15px !important;
-          margin-top: 0 !important;
-          margin-bottom: 0 !important;
-          display: block !important;
-          transition: none !important;
-          overflow-y: auto !important;
-          overflow-x: hidden !important;
-          -webkit-overflow-scrolling: touch !important; /* Smooth scrolling on iOS */
-          width: calc(100vw - 20px) !important;
-          max-width: calc(100vw - 20px) !important;
-          min-width: auto !important;
-          box-sizing: border-box !important;
-          -webkit-box-sizing: border-box !important; /* iOS Safari */
-          z-index: 9999 !important;
-          background: white !important;
-          box-shadow: 0 2px 8px rgba(0,0,0,0.1) !important;
-          -webkit-box-shadow: 0 2px 8px rgba(0,0,0,0.1) !important; /* iOS Safari */
         }
       }
       /* Desktop - hide link styling, show as normal text */
-      @media (hover: hover) {
+      /* Use (pointer: fine) to exclude touch devices like iPad that report hover */
+      @media (hover: hover) and (pointer: fine) {
         .section-link-mobile {
           color: inherit;
           text-decoration: none;
@@ -330,7 +228,7 @@
               <span class="diagram-container">
                 <a href="#paper1-diagram" class="section-label section-link-mobile">Illustrative Diagram</a>
                 <div id="paper1-diagram" class="diagram-text">
-                  <img src="img/paper1.png" style="max-width: 2400px; width: 100%;" alt="Paper 1 Diagram" />
+                  <img src="img/paper1.png" style="max-width: 1000px; width: 100%;" alt="Paper 1 Diagram" />
                 </div>
               </span>
             </li>
