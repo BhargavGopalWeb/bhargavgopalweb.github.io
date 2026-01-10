@@ -161,24 +161,16 @@
           margin-bottom: 0;
           transition: opacity 0.3s ease-in-out, visibility 0.3s ease-in-out, max-height 0.3s ease-in-out, padding 0.3s ease-in-out, margin 0.3s ease-in-out;
         }
-        #paper1-abstract:target,
-        #paper1-presentations:target,
-        #paper1-media:target,
-        #paper1-diagram:target,
-        #paper2-abstract:target,
-        #paper2-presentations:target,
-        #paper2-media:target,
-        #paper2-diagram:target {
+        .abstract-text.mobile-active,
+        .presentations-text.mobile-active,
+        .media-text.mobile-active,
+        .diagram-text.mobile-active {
           opacity: 1 !important;
           visibility: visible !important;
           max-height: 2000px !important;
           padding: 10px !important;
           margin-top: 10px !important;
           margin-bottom: 10px !important;
-          scroll-margin-top: 20px;
-        }
-        html {
-          scroll-behavior: smooth;
         }
       }
       /* Desktop - hide link styling, show as normal text */
@@ -379,5 +371,35 @@
 
       </div>
     </div>
+    <script>
+      // Mobile toggle behavior
+      if (window.matchMedia('(hover: none) and (pointer: coarse)').matches) {
+        document.querySelectorAll('.section-link-mobile').forEach(function(link) {
+          link.addEventListener('click', function(e) {
+            e.preventDefault();
+            e.stopPropagation();
+            
+            // Get the target element ID from the href
+            var targetId = this.getAttribute('href').substring(1);
+            var targetElement = document.getElementById(targetId);
+            
+            if (targetElement) {
+              // Toggle the mobile-active class
+              if (targetElement.classList.contains('mobile-active')) {
+                // Close it
+                targetElement.classList.remove('mobile-active');
+              } else {
+                // Close all other sections first
+                document.querySelectorAll('.abstract-text, .presentations-text, .media-text, .diagram-text').forEach(function(section) {
+                  section.classList.remove('mobile-active');
+                });
+                // Open this one
+                targetElement.classList.add('mobile-active');
+              }
+            }
+          });
+        });
+      }
+    </script>
   </body>
 </html>
