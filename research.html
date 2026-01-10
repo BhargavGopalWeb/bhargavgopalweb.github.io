@@ -127,29 +127,58 @@
         max-width: 2500px;
         white-space: normal;
       }
-      /* Mobile/touch device styles */
+      /* Mobile/touch device styles - make labels links */
       @media (hover: none) and (pointer: coarse) {
-        .section-label {
+        .section-link-mobile {
+          color: #4e4e4e;
+          text-decoration: none;
           cursor: pointer;
-          user-select: none;
-          -webkit-tap-highlight-color: transparent;
         }
-        .abstract-container.active .abstract-text,
-        .presentations-container.active .presentations-text,
-        .media-container.active .media-text,
-        .diagram-container.active .diagram-text {
-          opacity: 1;
-          visibility: visible;
-          max-height: 2000px;
-          padding: 10px;
-          transition: opacity 0.2s ease-in-out, visibility 0.2s ease-in-out, max-height 0.3s ease-in-out, padding 0.2s ease-in-out;
+        .section-link-mobile:active {
+          color: #333;
         }
+        /* Disable hover on mobile */
         .abstract-container:hover .abstract-text,
         .presentations-container:hover .presentations-text,
         .media-container:hover .media-text,
         .diagram-container:hover .diagram-text {
           opacity: 0;
           visibility: hidden;
+        }
+        /* On mobile, make content visible and in normal flow when linked to */
+        .abstract-text,
+        .presentations-text,
+        .media-text,
+        .diagram-text {
+          position: relative;
+          top: auto;
+          left: auto;
+          opacity: 0;
+          visibility: hidden;
+          max-height: 0;
+          padding: 0;
+          margin-top: 0;
+          margin-bottom: 0;
+          transition: opacity 0.3s ease-in-out, visibility 0.3s ease-in-out, max-height 0.3s ease-in-out, padding 0.3s ease-in-out, margin 0.3s ease-in-out;
+        }
+        .abstract-text:target,
+        .presentations-text:target,
+        .media-text:target,
+        .diagram-text:target {
+          opacity: 1;
+          visibility: visible;
+          max-height: 2000px;
+          padding: 10px;
+          margin-top: 10px;
+          margin-bottom: 10px;
+        }
+      }
+      /* Desktop - hide link styling, show as normal text */
+      @media (hover: hover) {
+        .section-link-mobile {
+          color: inherit;
+          text-decoration: none;
+          pointer-events: none;
         }
       }
     </style>
@@ -203,8 +232,8 @@
             </li>
             <li class="sections-container">
               <span class="abstract-container">
-                <span class="section-label">Abstract</span>
-                <p class="abstract-text">
+                <a href="#paper1-abstract" class="section-label section-link-mobile">Abstract</a>
+                <p id="paper1-abstract" class="abstract-text">
                   This study examines the role of search frictions and gendered differences in human capital in contributing to the persistence of all-male corporate boardrooms.
                   I use California's SB826, enacted in 2018 and requiring at least one female director on the corporate boards of listed firms by 2019, as a policy shock.
                   Using a difference-in-differences design comparing listed California-based firms to listed non-California based firms, I find the quota increased the female share of boards by 11 percentage points while increasing the share of out-of-network and first-time female directors by 3 percentage points.
@@ -216,8 +245,8 @@
               </span>
               <span class="section-separator"> | </span>
               <span class="presentations-container">
-                <span class="section-label">Presentations</span>
-                <p class="presentations-text">
+                <a href="#paper1-presentations" class="section-label section-link-mobile">Presentations</a>
+                <p id="paper1-presentations" class="presentations-text">
                   Interdisciplinary Seminar Series at Columbia University (2022), 
                   Discrimination and Diversity Workshop at University of East Anglia (2022), 
                   17th Annual Economics Graduate Student Conference at Washington University in St. Louis (2022), 
@@ -227,15 +256,15 @@
               </span>
               <span class="section-separator"> | </span>
               <span class="media-container">
-                <span class="section-label">Media</span>
-                <p class="media-text" style="font-size: 0.76em;">
+                <a href="#paper1-media" class="section-label section-link-mobile">Media</a>
+                <p id="paper1-media" class="media-text" style="font-size: 0.76em;">
                   <a href="https://smith.queensu.ca/insight/content/Why-Board-Gender-Quotas-Are-Nothing-to-Fear.php" target="_blank">Non-Technical Summary</a>
                 </p>
               </span>
               <span class="section-separator"> | </span>
               <span class="diagram-container">
-                <span class="section-label">Illustrative Diagram</span>
-                <div class="diagram-text">
+                <a href="#paper1-diagram" class="section-label section-link-mobile">Illustrative Diagram</a>
+                <div id="paper1-diagram" class="diagram-text">
                   <img src="img/paper1.png" style="max-width: 2400px; width: 100%;" alt="Paper 1 Diagram" />
                 </div>
               </span>
@@ -258,8 +287,8 @@
 
             <li class="sections-container">
               <span class="abstract-container">
-                <span class="section-label">Abstract</span>
-                <p class="abstract-text">
+                <a href="#paper2-abstract" class="section-label section-link-mobile">Abstract</a>
+                <p id="paper2-abstract" class="abstract-text">
 
                   While non-compete agreements (NCs) are prevalent, the incentives driving their use and their causal effects on workers remain poorly understood. 
                   We develop a model with asymmetric information to show that NCs shift the nature of allocative inefficiency by reducing inefficient quits and increasing inefficient retention, while mitigating the canonical hold-up problem. 
@@ -275,8 +304,8 @@
               </span>
               <span class="section-separator"> | </span>
               <span class="presentations-container">
-                <span class="section-label">Presentations</span>
-                <p class="presentations-text">
+                <a href="#paper2-presentations" class="section-label section-link-mobile">Presentations</a>
+                <p id="paper2-presentations" class="presentations-text">
                   Queen's University Faculty-PhD Working Group (2024), 
                   Organizations and Markets Workshop at Smith School of Business (2024), 
                   European Association of Labor Economists (2024), 
@@ -289,15 +318,15 @@
               </span>
               <span class="section-separator"> | </span>
               <span class="media-container">
-                <span class="section-label">Media</span>
-                <p class="media-text" style="font-size: 0.76em;">
+                <a href="#paper2-media" class="section-label section-link-mobile">Media</a>
+                <p id="paper2-media" class="media-text" style="font-size: 0.76em;">
                   <a href="https://smith.queensu.ca/insight/content/Should-Non-Compete-Agreements-Be-Non-Starters.php" target="_blank">Non-Technical Summary</a>, <a href="https://smith.queensu.ca/insight/content/Understanding-Non-Compete-Video.php" target="_blank">Video Interview</a>, <a href="https://www.thestar.com/business/noncompete-clauses-were-recently-banned-in-the-u-s-but-you-may-have-already-signed/article_295df646-08ac-11ef-ab02-1706ec797a60.html" target="_blank">Toronto Star</a>, <a href="https://atr.org/the-post-chevron-era-begins-with-a-gut-punch-to-the-ftcs-non-compete-ban/" target="_blank">Americans for Tax Reform</a>, <a href="https://www.cbc.ca/listen/live-radio/1-1414-bizdigest/clip/16177993-feds-unveil-supports-labour" target="_blank">CBC</a>
                 </p>
               </span>
               <span class="section-separator"> | </span>
               <span class="diagram-container">
-                <span class="section-label">Illustrative Diagram</span>
-                <div class="diagram-text">
+                <a href="#paper2-diagram" class="section-label section-link-mobile">Illustrative Diagram</a>
+                <div id="paper2-diagram" class="diagram-text">
                   <img src="img/paper2.png" style="max-width: 1000px; width: 100%;" alt="Paper 2 Diagram" />
                 </div>
               </span>
@@ -342,38 +371,5 @@
 
       </div>
     </div>
-    <script>
-      // Mobile click handling for sections
-      if (window.matchMedia('(hover: none) and (pointer: coarse)').matches) {
-        document.querySelectorAll('.section-label').forEach(function(label) {
-          label.addEventListener('click', function(e) {
-            e.preventDefault();
-            e.stopPropagation();
-            
-            // Find the parent container
-            var container = label.closest('.abstract-container, .presentations-container, .media-container, .diagram-container');
-            
-            // Close all other containers
-            document.querySelectorAll('.abstract-container, .presentations-container, .media-container, .diagram-container').forEach(function(otherContainer) {
-              if (otherContainer !== container) {
-                otherContainer.classList.remove('active');
-              }
-            });
-            
-            // Toggle current container
-            container.classList.toggle('active');
-          });
-        });
-        
-        // Close sections when clicking outside
-        document.addEventListener('click', function(e) {
-          if (!e.target.closest('.abstract-container, .presentations-container, .media-container, .diagram-container')) {
-            document.querySelectorAll('.abstract-container, .presentations-container, .media-container, .diagram-container').forEach(function(container) {
-              container.classList.remove('active');
-            });
-          }
-        });
-      }
-    </script>
   </body>
 </html>
