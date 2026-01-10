@@ -17,6 +17,117 @@
       rel="stylesheet"
       type="text/css"
     />
+    <style>
+      .abstract-text {
+        opacity: 0;
+        visibility: hidden;
+        max-height: 0;
+        overflow: hidden;
+        padding: 0;
+        margin-top: 5px;
+        transition: opacity 0.2s ease-in-out 0.165s, visibility 0.2s ease-in-out 0.165s, max-height 0.3s ease-in-out 0.165s, padding 0.2s ease-in-out 0.165s;
+      }
+      .abstract-container:hover .abstract-text {
+        opacity: 1;
+        visibility: visible;
+        max-height: 2000px;
+        padding: 10px;
+        transition: opacity 0.2s ease-in-out 0.165s, visibility 0.2s ease-in-out 0.165s, max-height 0.3s ease-in-out 0.165s, padding 0.2s ease-in-out 0.165s;
+      }
+      .presentations-text {
+        opacity: 0;
+        visibility: hidden;
+        max-height: 0;
+        overflow: hidden;
+        padding: 0;
+        margin-top: 5px;
+        transition: opacity 0.2s ease-in-out 0.33s, visibility 0.2s ease-in-out 0.33s, max-height 0.3s ease-in-out 0.33s, padding 0.2s ease-in-out 0.33s;
+      }
+      .presentations-container:hover .presentations-text {
+        opacity: 1;
+        visibility: visible;
+        max-height: 2000px;
+        padding: 10px;
+        transition: opacity 0.2s ease-in-out 0.165s, visibility 0.2s ease-in-out 0.165s, max-height 0.3s ease-in-out 0.165s, padding 0.2s ease-in-out 0.165s;
+      }
+      .media-text {
+        opacity: 0;
+        visibility: hidden;
+        max-height: 0;
+        overflow: hidden;
+        padding: 0;
+        margin-top: 5px;
+        transition: opacity 0.2s ease-in-out 0.33s, visibility 0.2s ease-in-out 0.33s, max-height 0.3s ease-in-out 0.33s, padding 0.2s ease-in-out 0.33s;
+      }
+      .media-container:hover .media-text {
+        opacity: 1;
+        visibility: visible;
+        max-height: 2000px;
+        padding: 10px;
+        transition: opacity 0.2s ease-in-out 0.165s, visibility 0.2s ease-in-out 0.165s, max-height 0.3s ease-in-out 0.165s, padding 0.2s ease-in-out 0.165s;
+      }
+      .diagram-text {
+        opacity: 0;
+        visibility: hidden;
+        max-height: 0;
+        overflow: hidden;
+        padding: 0;
+        margin-top: 5px;
+        transition: opacity 0.2s ease-in-out 0.33s, visibility 0.2s ease-in-out 0.33s, max-height 0.3s ease-in-out 0.33s, padding 0.2s ease-in-out 0.33s;
+      }
+      .diagram-container:hover .diagram-text {
+        opacity: 1;
+        visibility: visible;
+        max-height: 2000px;
+        padding: 10px;
+        transition: opacity 0.2s ease-in-out 0.165s, visibility 0.2s ease-in-out 0.165s, max-height 0.3s ease-in-out 0.165s, padding 0.2s ease-in-out 0.165s;
+      }
+      .sections-container {
+        display: inline-block;
+        width: 100%;
+      }
+      .abstract-container,
+      .presentations-container,
+      .media-container,
+      .diagram-container {
+        display: inline-block;
+        position: relative;
+        margin: 0;
+      }
+      .section-label {
+        font-weight: normal;
+        font-size: 0.85em;
+        display: inline-block;
+      }
+      .section-separator {
+        margin: 0 0.5em;
+        color: #4e4e4e;
+      }
+      .abstract-text,
+      .presentations-text,
+      .media-text {
+        position: absolute;
+        top: 100%;
+        left: 0;
+        z-index: 10;
+        background: white;
+        box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        min-width: 300px;
+        max-width: 600px;
+        white-space: normal;
+      }
+      .diagram-text {
+        position: absolute;
+        top: 100%;
+        left: 0;
+        z-index: 10;
+        background: white;
+        box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        min-width: 400px;
+        max-width: 2500px;
+        white-space: normal;
+      }
+    </style>
   </head>
   <body>
     <!--Creator Credit-->
@@ -54,7 +165,6 @@
 
     <div class="research section" id="research-section">
       <div class="container">
-        <h1>Research</h1>
         <!-- /////////////////////////////////////////////////////////////////////////////////////////////////
         YOU CAN EDIT THE METADATA OF THE FIRST STUDY BY EDITING THE CONTENT INSIDE THE TAGS BELOW
         USE THE PROVIDED TEMPLATE TO ADD NEW STUDIES
@@ -62,53 +172,49 @@
         <div class="study">
           <ul class="research-list list-flat">
             <li>
-              <h2>
-                Human Capital, Search Frictions, and All-Male Corporate Boardrooms
+              <h2 style="font-size: 0.95em;">
+                <a href="resources/paper1.pdf" target="_blank" style="color: blue;">Human Capital, Search Frictions, and All-Male Corporate Boardrooms</a>
               </h2>
             </li>
-
-            <li>
-              <img src="img/paper1.png" style="width: 600px;" />
-            </li>
-
-            <li>
-              <h4>Abstract</h4>
-              <p>
-                This study examines the role of search frictions and gendered differences in human capital in contributing to the persistence of all-male corporate boardrooms.
-                I use California’s SB826, enacted in 2018 and requiring at least one female director on the corporate boards of listed firms by 2019, as a policy shock.
-                Using a difference-in-differences design comparing listed California-based firms to listed non-California based firms, I find the quota increased the female share of boards by 11 percentage points while increasing the share of out-of-network and first-time female directors by 3 percentage points.
-                Other measures of human capital and board quality remained stable. 
-                The traditional shift-share instrumental variables approach used in related research dramatically over-states point-estimates, as pre-reform diversity is correlated with firm-size and growth trajectories. 
-                My results indicate SB826 reduced firms’ reliance on existing networks, suggesting that search frictions, rather than a lack of qualified candidates, previously contributed to the persistence of all-male boards.
-              
-              </p>
-            </li>
-
-              <li>
-                <h4>Presentations</h4>
-                <p>
+            <li class="sections-container">
+              <span class="abstract-container">
+                <span class="section-label">Abstract</span>
+                <p class="abstract-text">
+                  This study examines the role of search frictions and gendered differences in human capital in contributing to the persistence of all-male corporate boardrooms.
+                  I use California's SB826, enacted in 2018 and requiring at least one female director on the corporate boards of listed firms by 2019, as a policy shock.
+                  Using a difference-in-differences design comparing listed California-based firms to listed non-California based firms, I find the quota increased the female share of boards by 11 percentage points while increasing the share of out-of-network and first-time female directors by 3 percentage points.
+                  Other measures of human capital and board quality remained stable. 
+                  The traditional shift-share instrumental variables approach used in related research dramatically over-states point-estimates, as pre-reform diversity is correlated with firm-size and growth trajectories. 
+                  My results indicate SB826 reduced firms' reliance on existing networks, suggesting that search frictions, rather than a lack of qualified candidates, previously contributed to the persistence of all-male boards.
+                
+                </p>
+              </span>
+              <span class="section-separator"> | </span>
+              <span class="presentations-container">
+                <span class="section-label">Presentations</span>
+                <p class="presentations-text">
                   Interdisciplinary Seminar Series at Columbia University (2022), 
                   Discrimination and Diversity Workshop at University of East Anglia (2022), 
                   17th Annual Economics Graduate Student Conference at Washington University in St. Louis (2022), 
                   Society of Labor Economists (2024), 
                   Canadian Economics Association (2024, 2025)
                 </p>
-              </li>
-
-            <li>
-              <a href="resources/paper1.pdf" target="_blank"
-                >Link to full study</a
-              >
+              </span>
+              <span class="section-separator"> | </span>
+              <span class="media-container">
+                <span class="section-label">Media</span>
+                <p class="media-text" style="font-size: 0.76em;">
+                  <a href="https://smith.queensu.ca/insight/content/Why-Board-Gender-Quotas-Are-Nothing-to-Fear.php" target="_blank">Non-Technical Summary</a>
+                </p>
+              </span>
+              <span class="section-separator"> | </span>
+              <span class="diagram-container">
+                <span class="section-label">Illustrative Diagram</span>
+                <div class="diagram-text">
+                  <img src="img/paper1.png" style="max-width: 2400px; width: 100%;" alt="Paper 1 Diagram" />
+                </div>
+              </span>
             </li>
-
-            <li style="margin-top: 15px;">
-              <h4>Media</h4>
-              <p>
-                <a href="https://smith.queensu.ca/insight/content/Why-Board-Gender-Quotas-Are-Nothing-to-Fear.php" target="_blank">Non-technical summary</a>
-              </p>
-            </li>
-
-
 
           </ul>
         </div>
@@ -120,61 +226,56 @@
         <div class="study">
           <ul class="research-list list-flat">
             <li>
-              <h2>
-                Do Non-Compete Agreements Help or Hurt Workers? Evidence from the NLSY97 (with Xiangru Li and Luke Rawling)
+              <h2 style="font-size: 0.95em;">
+                <a href="resources/paper2.pdf" target="_blank" style="color: blue;">Do Non-Compete Agreements Help or Hurt Workers? Evidence from the NLSY97</a> <span style="font-weight: normal;">(with Xiangru Li and Luke Rawling)</span>
               </h2>
             </li>
 
-            <li>
-              <img src="img/paper2.png" style="width: 400px;" />
-            </li>
+            <li class="sections-container">
+              <span class="abstract-container">
+                <span class="section-label">Abstract</span>
+                <p class="abstract-text">
 
-            <li>
-              <h4>Abstract</h4>
-              <p>
-
-                While non-compete agreements (NCs) are prevalent, the incentives driving their use and their causal effects on workers remain poorly understood. 
-                We develop a model with asymmetric information to show that NCs shift the nature of allocative inefficiency by reducing inefficient quits and increasing inefficient retention, while mitigating the canonical hold-up problem. 
-                The model predicts that NCs are more likely to be used in industries with high returns on industry-specific investments, and that signers have longer job tenures, higher contracted wages, and receive more firm-provided investment than similar workers without such agreements. 
-                To test these predictions, we use panel data from the NLSY97 and a difference-in-differences research design to estimate the causal impact of signing an NC. 
-                We find that NCs raise job tenures by 6% and lead to an immediate wage increase of 10%. 
-                Six years after signing, the wage premium falls to 5%. There is also substantial heterogeneity across worker demographics, with non-white, non-college and lower-wage workers experiencing lower wage-growth after signing an NC. 
-                Consistent with the theory, NC usage is more prevalent in industries with high returns on experience and among workers who perform sophisticated tasks.
-                While the theory links NCs to firm investment, we find no evidence of increased investment in formal training, suggesting investments prompted by the agreement are likely informal. 
-                Our findings caution against blanket bans on non-compete usage.
-        
-              </p>
-            </li>
-
-            <li>
-              <h4>Presentations</h4>
-              <p>
-                Queen's University Faculty-PhD Working Group (2024), 
-                Organizations and Markets Workshop at Smith School of Business (2024), 
-                European Association of Labor Economists (2024), 
-                Southern Economics Association (2024), 
-                Administrative Sciences Association of Canada (2025),
-                Canadian Public Economics Group (2025) by co-author, 
-                American Economics Association Non-Compete Agreements in Low-Wage Markets Session (Scheduled Jan 2026),
-                Canadian Labour Economics Forum (Scheduled Jan 2026)
-              </p>
-            </li>
-            
-            <li>
-              <a href="resources/paper2.pdf" target="_blank"
-                >Link to Full Study</a
-              >
-            </li>
-
-            <li style="margin-top: 15px;">
-              <h4>Media</h4>
-              <p>
-                <a href="https://smith.queensu.ca/insight/content/Should-Non-Compete-Agreements-Be-Non-Starters.php" target="_blank">Non-technical summary</a>,
-                <a href="https://smith.queensu.ca/insight/content/Understanding-Non-Compete-Video.php" target="_blank">Video Interview</a>,
-                <a href="https://www.thestar.com/business/noncompete-clauses-were-recently-banned-in-the-u-s-but-you-may-have-already-signed/article_295df646-08ac-11ef-ab02-1706ec797a60.html" target="_blank">Toronto Star</a>,
-                <a href="https://atr.org/the-post-chevron-era-begins-with-a-gut-punch-to-the-ftcs-non-compete-ban/" target="_blank">Americans for Tax Reform</a>,
-                <a href="https://www.cbc.ca/listen/live-radio/1-1414-bizdigest/clip/16177993-feds-unveil-supports-labour" target="_blank">CBC</a>
-              </p>
+                  While non-compete agreements (NCs) are prevalent, the incentives driving their use and their causal effects on workers remain poorly understood. 
+                  We develop a model with asymmetric information to show that NCs shift the nature of allocative inefficiency by reducing inefficient quits and increasing inefficient retention, while mitigating the canonical hold-up problem. 
+                  The model predicts that NCs are more likely to be used in industries with high returns on industry-specific investments, and that signers have longer job tenures, higher contracted wages, and receive more firm-provided investment than similar workers without such agreements. 
+                  To test these predictions, we use panel data from the NLSY97 and a difference-in-differences research design to estimate the causal impact of signing an NC. 
+                  We find that NCs raise job tenures by 6% and lead to an immediate wage increase of 10%. 
+                  Six years after signing, the wage premium falls to 5%. There is also substantial heterogeneity across worker demographics, with non-white, non-college and lower-wage workers experiencing lower wage-growth after signing an NC. 
+                  Consistent with the theory, NC usage is more prevalent in industries with high returns on experience and among workers who perform sophisticated tasks.
+                  While the theory links NCs to firm investment, we find no evidence of increased investment in formal training, suggesting investments prompted by the agreement are likely informal. 
+                  Our findings caution against blanket bans on non-compete usage.
+          
+                </p>
+              </span>
+              <span class="section-separator"> | </span>
+              <span class="presentations-container">
+                <span class="section-label">Presentations</span>
+                <p class="presentations-text">
+                  Queen's University Faculty-PhD Working Group (2024), 
+                  Organizations and Markets Workshop at Smith School of Business (2024), 
+                  European Association of Labor Economists (2024), 
+                  Southern Economics Association (2024), 
+                  Administrative Sciences Association of Canada (2025),
+                  Canadian Public Economics Group (2025) by co-author, 
+                  <a href="resources/aea_nc_slides.pdf" target="_blank" style="color: blue; font-size: inherit;">American Economics Association Non-Compete Agreements in Low-Wage Markets Session (2026): slides</a>,
+                  Canadian Labour Economics Forum (Scheduled Jan 2026)
+                </p>
+              </span>
+              <span class="section-separator"> | </span>
+              <span class="media-container">
+                <span class="section-label">Media</span>
+                <p class="media-text" style="font-size: 0.76em;">
+                  <a href="https://smith.queensu.ca/insight/content/Should-Non-Compete-Agreements-Be-Non-Starters.php" target="_blank">Non-Technical Summary</a>, <a href="https://smith.queensu.ca/insight/content/Understanding-Non-Compete-Video.php" target="_blank">Video Interview</a>, <a href="https://www.thestar.com/business/noncompete-clauses-were-recently-banned-in-the-u-s-but-you-may-have-already-signed/article_295df646-08ac-11ef-ab02-1706ec797a60.html" target="_blank">Toronto Star</a>, <a href="https://atr.org/the-post-chevron-era-begins-with-a-gut-punch-to-the-ftcs-non-compete-ban/" target="_blank">Americans for Tax Reform</a>, <a href="https://www.cbc.ca/listen/live-radio/1-1414-bizdigest/clip/16177993-feds-unveil-supports-labour" target="_blank">CBC</a>
+                </p>
+              </span>
+              <span class="section-separator"> | </span>
+              <span class="diagram-container">
+                <span class="section-label">Illustrative Diagram</span>
+                <div class="diagram-text">
+                  <img src="img/paper2.png" style="max-width: 1000px; width: 100%;" alt="Paper 2 Diagram" />
+                </div>
+              </span>
             </li>
 
 
@@ -183,23 +284,36 @@
         </div>
 
         <div class="study">
-          <h2>Selected Works in Progress</h2>
           <ul class="research-list list-flat">
-            <li> The Effects of Non-Compete Regulation </li>
-            <li> Mandatory Disclosure and Female Representation in Corporate Leadership: Evidence from NASDAQ (with Dhruv Baswal, Tanvir Ahmed Khan, Bailey Kraus)  </li>
-            <li style="font-size: 0.80em; margin-top: 5px;">
-              <a href="resources/disclosure_slides.pdf" target="_blank"> Mandatory Disclosure Slides</a>
+            <li>
+              <h2 style="font-size: 0.95em;">
+                <a href="resources/disclosure_slides.pdf" target="_blank" style="color: blue;">Mandatory Disclosure and Female Representation in Corporate Leadership: Evidence from NASDAQ - Slides</a> <span style="font-weight: normal;">(with Dhruv Baswal, Tanvir Ahmed Khan, Bailey Kraus)</span>
+              </h2>
             </li>
           </ul>
         </div>
 
-        <ul class="research-list list-flat">
-          <li>
-            <a href="resources/bgopal_research_statement.pdf" target="_blank"
-              >Research Statement</a
-            >
-          </li>
-        </ul>
+
+        <div class="study">
+          <ul class="research-list list-flat">
+            <li>
+              <h2 style="font-size: 0.95em;">
+                <a href="resources/nc_pandp.pdf" target="_blank" style="color: blue;">Non-Compete Agreements and Bargaining Power</a>, <i style="font-weight: normal;">AEA Papers and Proceedings</i>, <span style="font-weight: normal;">Volume 116, May 2026.</span> <span style="font-weight: normal;">(Joint with Xiangru Li and Luke Rawling)</span>
+              </h2>
+            </li>
+          </ul>
+        </div>
+
+        <div class="study">
+          <ul class="research-list list-flat">
+            <li>
+              <h2 style="font-size: 0.95em; font-weight: normal;">
+                The Effects of Non-Compete Regulation (draft available upon request)
+              </h2>
+            </li>
+          </ul>
+        </div>
+
 
       </div>
     </div>
