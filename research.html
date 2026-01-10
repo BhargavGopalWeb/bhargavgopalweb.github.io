@@ -133,27 +133,23 @@
       (max-width: 768px) {
         .sections-container {
           display: flex !important;
+          flex-direction: column !important;
           flex-wrap: nowrap !important;
-          align-items: center !important;
-          white-space: nowrap !important;
+          align-items: flex-start !important;
           position: relative !important;
         }
         .abstract-container,
         .presentations-container,
         .media-container,
         .diagram-container {
-          display: inline-flex !important;
-          flex-direction: column !important;
+          display: block !important;
           flex-shrink: 0 !important;
-          white-space: nowrap !important;
-          vertical-align: top !important;
           position: relative !important;
-          align-items: flex-start !important;
           pointer-events: auto !important;
+          margin: 2px 0 !important;
         }
         .section-separator {
-          flex-shrink: 0 !important;
-          white-space: nowrap !important;
+          display: none !important;
         }
         .section-link-mobile {
           color: #4e4e4e;
@@ -161,14 +157,14 @@
           cursor: pointer;
           pointer-events: auto !important;
           -webkit-tap-highlight-color: rgba(0, 0, 0, 0.1);
-          display: inline-block;
+          display: block;
           touch-action: manipulation;
-          white-space: nowrap;
           position: relative;
           z-index: 1000;
-          min-height: 44px;
-          line-height: 44px;
-          padding: 0 4px;
+          min-height: 36px;
+          line-height: 36px;
+          padding: 0;
+          margin: 0;
         }
         .section-link-mobile:active {
           color: #333;
@@ -482,10 +478,7 @@
           return;
         }
         
-        // Find the study container to scope content to this paper only
-        var studyContainer = link.closest('.study');
-        
-        // Toggle the mobile-active class
+        // Simple toggle - each button toggles its own content independently
         if (targetElement.classList.contains('mobile-active')) {
           // Close it
           targetElement.classList.remove('mobile-active');
@@ -494,24 +487,6 @@
           targetElement.style.left = '';
           targetElement.style.right = '';
         } else {
-          // Close all other sections first (only within the same study to prevent cross-paper interference)
-          if (studyContainer) {
-            studyContainer.querySelectorAll('.abstract-text, .presentations-text, .media-text, .diagram-text').forEach(function(section) {
-              section.classList.remove('mobile-active');
-              section.style.top = '';
-              section.style.left = '';
-              section.style.right = '';
-            });
-          } else {
-            // Fallback: close all if we can't find study container
-            document.querySelectorAll('.abstract-text, .presentations-text, .media-text, .diagram-text').forEach(function(section) {
-              section.classList.remove('mobile-active');
-              section.style.top = '';
-              section.style.left = '';
-              section.style.right = '';
-            });
-          }
-          
           // Open this one
           targetElement.classList.add('mobile-active');
           
@@ -521,13 +496,14 @@
             var linkRect = link.getBoundingClientRect();
             var viewportHeight = window.innerHeight || document.documentElement.clientHeight;
             
-            // Position below the button with some spacing (fixed is relative to viewport)
-            var topPosition = linkRect.bottom + 5;
+            // Position directly below the button with minimal spacing (fixed is viewport-relative)
+            var topPosition = linkRect.bottom + 2;
             
-            // Ensure content doesn't go off-screen (for Android browsers with address bar)
-            var maxTop = viewportHeight - 100; // Leave some space at bottom
+            // Ensure content doesn't go off-screen
+            var maxTop = viewportHeight - 50; // Leave some space at bottom
             if (topPosition > maxTop) {
-              topPosition = Math.max(10, maxTop);
+              // If it would go off-screen, position it above the button instead
+              topPosition = Math.max(10, linkRect.top - 10);
             }
             
             // Set positioning (works on both iOS and Android)
@@ -538,11 +514,6 @@
             // Force reflow for Android browsers
             targetElement.offsetHeight;
           });
-          
-          // Scroll to the link to show the content
-          setTimeout(function() {
-            link.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
-          }, 50);
         }
       }
       
@@ -560,29 +531,26 @@
           // Mark as having handler attached to prevent duplicate handlers
           link.setAttribute('data-mobile-handler', 'true');
           
-          var lastTouchTime = 0;
-          var touchStarted = false;
-          var touchEnded = false;
+          var lastActionTime = 0;
+          var actionHandled = false;
           
-          // Use touchstart to track touch beginning
-          link.addEventListener('touchstart', function(e) {
-            if (isMobileDevice()) {
-              touchStarted = true;
-              touchEnded = false;
-              lastTouchTime = Date.now();
-            }
-          }, { passive: true });
-          
-          // Primary handler - use touchend for mobile (works on both iOS and Android)
-          link.addEventListener('touchend', function(e) {
-            if (!isMobileDevice() || !touchStarted) {
+          // Unified handler function
+          function handleTap(e) {
+            if (!isMobileDevice()) {
               return;
             }
             
-            touchEnded = true;
-            lastTouchTime = Date.now();
+            var now = Date.now();
+            // Prevent double-firing within 300ms
+            if (actionHandled && (now - lastActionTime) < 300) {
+              e.preventDefault();
+              e.stopPropagation();
+              return;
+            }
             
-            // Prevent default to stop click event (works on both platforms)
+            actionHandled = true;
+            lastActionTime = now;
+            
             e.preventDefault();
             e.stopPropagation();
             e.stopImmediatePropagation();
@@ -590,36 +558,17 @@
             // Handle the toggle
             handleMobileToggle(link, e);
             
-            // Reset flags after a delay
+            // Reset flag after delay
             setTimeout(function() {
-              touchStarted = false;
-              touchEnded = false;
-            }, 300);
-          }, { passive: false });
+              actionHandled = false;
+            }, 350);
+          }
           
-          // Click handler as fallback and for devices that need it
-          link.addEventListener('click', function(e) {
-            if (!isMobileDevice()) {
-              return;
-            }
-            
-            // Check if this click came from a recent touch
-            var timeSinceTouch = Date.now() - lastTouchTime;
-            
-            // If touch was handled recently (within 400ms), prevent click
-            if (touchEnded && timeSinceTouch < 400) {
-              e.preventDefault();
-              e.stopPropagation();
-              e.stopImmediatePropagation();
-              return;
-            }
-            
-            // Otherwise handle the click (for devices that don't fire touchend properly)
-            e.preventDefault();
-            e.stopPropagation();
-            e.stopImmediatePropagation();
-            handleMobileToggle(link, e);
-          }, { passive: false });
+          // Primary handler - use touchend for mobile (works on both iOS and Android)
+          link.addEventListener('touchend', handleTap, { passive: false });
+          
+          // Click handler as fallback (for devices that need it)
+          link.addEventListener('click', handleTap, { passive: false });
         });
       }
       
