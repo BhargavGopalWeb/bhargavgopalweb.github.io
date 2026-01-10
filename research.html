@@ -113,7 +113,8 @@
         background: white;
         box-shadow: 0 2px 8px rgba(0,0,0,0.1);
         min-width: 300px;
-        max-width: 600px;
+        max-width: 900px;
+        width: 90vw;
         white-space: normal;
       }
       .diagram-text {
@@ -128,16 +129,45 @@
         white-space: normal;
       }
       /* Mobile/touch device styles - make labels links */
-      @media (hover: none) and (pointer: coarse) {
+      @media (hover: none) and (pointer: coarse),
+      (max-width: 768px) {
+        .sections-container {
+          display: flex !important;
+          flex-wrap: nowrap !important;
+          align-items: center !important;
+          white-space: nowrap !important;
+          position: relative !important;
+        }
+        .abstract-container,
+        .presentations-container,
+        .media-container,
+        .diagram-container {
+          display: inline-flex !important;
+          flex-direction: column !important;
+          flex-shrink: 0 !important;
+          white-space: nowrap !important;
+          vertical-align: top !important;
+          position: relative !important;
+          align-items: flex-start !important;
+        }
+        .section-separator {
+          flex-shrink: 0 !important;
+          white-space: nowrap !important;
+        }
         .section-link-mobile {
           color: #4e4e4e;
           text-decoration: none;
           cursor: pointer;
+          pointer-events: auto !important;
+          -webkit-tap-highlight-color: rgba(0, 0, 0, 0.1);
+          display: inline-block;
+          touch-action: manipulation;
+          white-space: nowrap;
         }
         .section-link-mobile:active {
           color: #333;
         }
-        /* Disable hover on mobile */
+        /* Disable hover and desktop transitions on mobile */
         .abstract-container:hover .abstract-text,
         .presentations-container:hover .presentations-text,
         .media-container:hover .media-text,
@@ -145,32 +175,60 @@
           opacity: 0 !important;
           visibility: hidden !important;
         }
+        /* Disable all transitions from desktop CSS on mobile */
+        .abstract-text,
+        .presentations-text,
+        .media-text,
+        .diagram-text {
+          transition: none !important;
+        }
         /* On mobile, make content visible and in normal flow when linked to */
         .abstract-text,
         .presentations-text,
         .media-text,
         .diagram-text {
-          position: relative !important;
-          top: auto !important;
-          left: auto !important;
-          opacity: 0;
-          visibility: hidden;
-          max-height: 0;
-          padding: 0;
-          margin-top: 0;
-          margin-bottom: 0;
-          transition: opacity 0.3s ease-in-out, visibility 0.3s ease-in-out, max-height 0.3s ease-in-out, padding 0.3s ease-in-out, margin 0.3s ease-in-out;
+          position: absolute !important;
+          top: 100% !important;
+          left: 0 !important;
+          right: 0 !important;
+          opacity: 0 !important;
+          visibility: hidden !important;
+          max-height: 0 !important;
+          padding: 0 !important;
+          margin-top: 0 !important;
+          margin-bottom: 0 !important;
+          transition: none !important;
+          overflow: hidden !important;
+          width: auto !important;
+          max-width: none !important;
+          min-width: auto !important;
+          box-sizing: border-box !important;
+          z-index: 100 !important;
+          display: block !important;
         }
         .abstract-text.mobile-active,
         .presentations-text.mobile-active,
         .media-text.mobile-active,
         .diagram-text.mobile-active {
+          position: absolute !important;
+          top: 100% !important;
+          left: 0 !important;
           opacity: 1 !important;
           visibility: visible !important;
-          max-height: 2000px !important;
-          padding: 10px !important;
+          max-height: none !important;
+          padding: 15px !important;
           margin-top: 10px !important;
           margin-bottom: 10px !important;
+          display: block !important;
+          transition: none !important;
+          overflow: visible !important;
+          width: calc(100vw - 20px) !important;
+          max-width: calc(100vw - 20px) !important;
+          min-width: auto !important;
+          box-sizing: border-box !important;
+          z-index: 100 !important;
+          background: white !important;
+          box-shadow: 0 2px 8px rgba(0,0,0,0.1) !important;
         }
       }
       /* Desktop - hide link styling, show as normal text */
@@ -372,34 +430,98 @@
       </div>
     </div>
     <script>
-      // Mobile toggle behavior
-      if (window.matchMedia('(hover: none) and (pointer: coarse)').matches) {
+      // Mobile toggle behavior - detect mobile more reliably
+      function isMobileDevice() {
+        return (window.matchMedia('(hover: none) and (pointer: coarse)').matches) ||
+               (window.matchMedia('(max-width: 768px)').matches) ||
+               ('ontouchstart' in window) ||
+               (navigator.maxTouchPoints > 0);
+      }
+      
+      function initMobileToggle() {
+        // Add mobile class to body for CSS targeting
+        if (isMobileDevice()) {
+          document.body.classList.add('is-mobile');
+        }
+        
+        // Always attach handlers, but only toggle on mobile
         document.querySelectorAll('.section-link-mobile').forEach(function(link) {
-          link.addEventListener('click', function(e) {
-            e.preventDefault();
-            e.stopPropagation();
-            
-            // Get the target element ID from the href
-            var targetId = this.getAttribute('href').substring(1);
-            var targetElement = document.getElementById(targetId);
-            
-            if (targetElement) {
-              // Toggle the mobile-active class
-              if (targetElement.classList.contains('mobile-active')) {
-                // Close it
-                targetElement.classList.remove('mobile-active');
-              } else {
-                // Close all other sections first
-                document.querySelectorAll('.abstract-text, .presentations-text, .media-text, .diagram-text').forEach(function(section) {
-                  section.classList.remove('mobile-active');
-                });
-                // Open this one
-                targetElement.classList.add('mobile-active');
+          // Use both click and touchstart for better mobile support
+          ['click', 'touchend'].forEach(function(eventType) {
+            link.addEventListener(eventType, function(e) {
+              // Check if mobile on each event (in case of resize)
+              var isMobile = isMobileDevice();
+              
+              // Only prevent default and toggle on mobile
+              if (isMobile) {
+                e.preventDefault();
+                e.stopPropagation();
+                
+                // Get the target element ID from the href
+                var targetId = this.getAttribute('href');
+                if (targetId && targetId.startsWith('#')) {
+                  targetId = targetId.substring(1);
+                }
+                var targetElement = document.getElementById(targetId);
+                
+                if (targetElement) {
+                  // Find the sections-container parent
+                  var sectionsContainer = link.closest('.sections-container');
+                  
+                  // Toggle the mobile-active class
+                  if (targetElement.classList.contains('mobile-active')) {
+                    // Close it
+                    targetElement.classList.remove('mobile-active');
+                    // Reset positioning
+                    targetElement.style.left = '';
+                  } else {
+                    // Close all other sections first
+                    document.querySelectorAll('.abstract-text, .presentations-text, .media-text, .diagram-text').forEach(function(section) {
+                      section.classList.remove('mobile-active');
+                      section.style.left = '';
+                    });
+                    // Open this one
+                    targetElement.classList.add('mobile-active');
+                    
+                    // Position content to span full viewport width on mobile
+                    if (isMobile) {
+                      setTimeout(function() {
+                        var elementRect = targetElement.getBoundingClientRect();
+                        var viewportLeft = 0;
+                        var leftOffset = viewportLeft - elementRect.left;
+                        // Align to viewport left edge with 10px padding
+                        targetElement.style.left = (leftOffset + 10) + 'px';
+                      }, 10);
+                    }
+                    
+                    // Scroll to the link to show the content
+                    setTimeout(function() {
+                      link.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+                    }, 50);
+                  }
+                }
               }
-            }
+              // On desktop, let the default link behavior work (though it shouldn't navigate due to pointer-events: none)
+            }, { passive: false });
           });
         });
       }
+      
+      // Run when DOM is ready
+      if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', initMobileToggle);
+      } else {
+        initMobileToggle();
+      }
+      
+      // Re-check on resize in case device orientation changes
+      window.addEventListener('resize', function() {
+        if (isMobileDevice()) {
+          document.body.classList.add('is-mobile');
+        } else {
+          document.body.classList.remove('is-mobile');
+        }
+      });
     </script>
   </body>
 </html>
